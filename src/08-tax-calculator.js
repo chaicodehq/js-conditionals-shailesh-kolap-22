@@ -27,4 +27,30 @@
  */
 export function calculateTax(income) {
   // Your code here
+  if (income <= 0) {
+    return 0;
+  }
+
+  let tax;
+
+  if (income <= 10000) {
+    tax = 0;
+  } else if (income <= 30000) {
+    tax = calculatePercentage(income - 10000, 10);
+  } else if (income <= 70000) {
+    tax =
+      calculatePercentage(income - 30000, 20) +
+      calculatePercentage(30000 - 10000, 10);
+  } else {
+    tax =
+      calculatePercentage(income - 70000, 30) +
+      calculatePercentage(70000 - 30000, 20) +
+      calculatePercentage(30000 - 10000, 10);
+  }
+
+  return tax;
 }
+
+const calculatePercentage = (num, percentage) => {
+  return (num / 100) * percentage;
+};

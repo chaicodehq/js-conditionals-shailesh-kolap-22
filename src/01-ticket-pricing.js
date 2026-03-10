@@ -24,4 +24,27 @@
  */
 export function getTicketPrice(age, isWeekend) {
   // Your code here
+
+  if (typeof age !== "number" || age < 0 || typeof isWeekend !== "boolean") {
+    return -1;
+  }
+  const isChildren = age >= 0 && age <= 12 ? true : false;
+  const isTeean = age >= 13 && age <= 17 ? true : false;
+  const isAdult = age >= 18 && age <= 59 ? true : false;
+  const isSeniors = age >= 60 ? true : false;
+
+  const childrensTicketPrise = 8;
+  const teensTicketPrise = 12;
+  const adultsTicketPrise = 15;
+  const senioursTicketPrise = 10;
+
+  if (isChildren) {
+    return isWeekend ? childrensTicketPrise + 3 : childrensTicketPrise;
+  } else if (isTeean) {
+    return isWeekend ? teensTicketPrise + 3 : teensTicketPrise;
+  } else if (isAdult) {
+    return isWeekend ? adultsTicketPrise + 3 : adultsTicketPrise;
+  } else if (isSeniors) {
+    return isWeekend ? senioursTicketPrise + 3 : senioursTicketPrise;
+  }
 }
